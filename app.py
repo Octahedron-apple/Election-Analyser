@@ -26,6 +26,6 @@ class SurveyData(BaseModel):
     cm_preference: str
     voting_reason: str
 
-# model = joblib.load("models/model.pkl")
+model = joblib.load("models/pipe.pkl")
 
 uvicorn.run(app, host="0.0.0.0", port=8000)

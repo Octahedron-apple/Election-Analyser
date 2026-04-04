@@ -214,7 +214,7 @@ function renderCards(){
     return`<div class="candidate-card" onclick="openModal(${c.id})">
       <div class="card-top"><div class="avatar" style="background:${ab};color:${ac}">${initials(c.name)}</div><div><div class="card-name">${c.name}</div><div class="card-id">#${c.id}</div></div></div>
       <div class="party-badge" style="background:${ps.bg};color:${ps.color}"><span style="width:5px;height:5px;border-radius:50%;background:${ps.dot};flex-shrink:0;display:inline-block"></span>${sp}</div>
-      <div class="card-grid"><div><div class="card-field-label">Age</div><div class="card-field-value">${c.age||'—'} yrs</div></div><div><div class="card-field-label">Education</div><div class="card-field-value">${c.education||'—'}</div></div></div>
+      <div class="card-grid"><div><div class="card-field-label">Age</div><div class="card-field-value">${c.age||'?'} yrs</div></div><div><div class="card-field-label">Education</div><div class="card-field-value">${c.education||'?'}</div></div></div>
       <div class="card-footer"><span class="criminal-badge ${cc}">${cl}</span><span class="asset-display">${assetDisplay(c.assets)}</span></div>
     </div>`;
   }).join('');
@@ -244,8 +244,8 @@ function openModal(id){
     <div class="modal-name">${c.name}</div>
     <div class="modal-party"><span class="party-badge" style="background:${ps.bg};color:${ps.color}"><span style="width:5px;height:5px;border-radius:50%;background:${ps.dot};display:inline-block"></span>${c.party}</span></div>
     <div class="modal-grid">
-      <div class="modal-field"><div class="modal-field-label">Age</div><div class="modal-field-value">${c.age||'—'} years</div></div>
-      <div class="modal-field"><div class="modal-field-label">Education</div><div class="modal-field-value">${c.education||'—'}</div></div>
+      <div class="modal-field"><div class="modal-field-label">Age</div><div class="modal-field-value">${c.age||'?'} years</div></div>
+      <div class="modal-field"><div class="modal-field-label">Education</div><div class="modal-field-value">${c.education||'?'}</div></div>
       <div class="modal-field"><div class="modal-field-label">Criminal Cases</div><div class="modal-field-value"><span class="criminal-badge ${cc}">${cl}</span></div></div>
       <div class="modal-field"><div class="modal-field-label">Candidate #</div><div class="modal-field-value">#${c.id}</div></div>
       <div class="modal-field" style="grid-column:1/-1"><div class="modal-field-label">Total Assets</div><div class="modal-field-value" style="color:var(--c4)">${c.assets||'Not Disclosed'}</div></div>
@@ -276,7 +276,7 @@ async function checkApiStatus(){
       const hasModel=d.available_models&&d.available_models.includes('bihar_voter_prediction.pkl');
       if(hasModel){
         el.style.color='var(--c4)';
-        el.innerHTML='✅ <strong>Server connected</strong> — <code style="font-size:.75rem;background:rgba(10,135,84,.1);padding:.1rem .3rem;border-radius:3px;">bihar_voter_prediction.pkl</code> loaded and ready.';
+        el.innerHTML='✅ <strong>Server connected</strong> <code style="font-size:.75rem;background:rgba(10,135,84,.1);padding:.1rem .3rem;border-radius:3px;">bihar_voter_prediction.pkl</code> loaded and ready.';
       } else {
         el.style.color='#b45309';
         el.innerHTML='⚠️ Server running but model not found.<br><span style="font-size:.75rem">Place <code style="background:rgba(180,83,9,.1);padding:.1rem .3rem;border-radius:3px;">bihar_voter_prediction.pkl</code> in the <code style="background:rgba(180,83,9,.1);padding:.1rem .3rem;border-radius:3px;">models/</code> folder and restart the server.</span>';
@@ -286,7 +286,7 @@ async function checkApiStatus(){
     }
   }catch(err){
     el.style.color='#c0392b';
-    el.innerHTML='✗ <strong>Not connected</strong> — run: <code style="font-size:.72rem;background:rgba(192,57,43,.08);padding:.1rem .3rem;border-radius:3px;">uvicorn api:app --reload --port 5000</code>';
+    el.innerHTML='✗ <strong>Not connected</strong> run: <code style="font-size:.72rem;background:rgba(192,57,43,.08);padding:.1rem .3rem;border-radius:3px;">uvicorn api:app --reload --port 5000</code>';
   }
 }
 

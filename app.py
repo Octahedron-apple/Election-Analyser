@@ -81,7 +81,7 @@ async def predict_bihar(voter_data: BiharVoter):
     except ValueError as e:
         return {
             "status": "error",
-            "message": f"Mapping error: {str(e)}.",
+            "message": f" error: {str(e)}.",
         }
     except Exception as e:
         return {
